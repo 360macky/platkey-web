@@ -1,38 +1,65 @@
-.App {
-  text-align: center;
+.platkey-interface {
+  border-radius: 1.2rem;
+  animation-name: lightup;
+  animation-timing-function: ease;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  transition-property: transform opacity;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.platkey-interface-container h2 {
+  transition-property: opacity transform;
+  transition-duration: 400ms;
+  transition-timing-function: ease;
+  opacity: 0.1;
+  text-shadow: 0px 0px 1rem #0A1122bb;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.platkey-interface-container a {
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 400ms;
+  transition-timing-function: ease;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.platkey-interface-container:hover a {
+  opacity: 1;
 }
 
-.App-link {
-  color: #61dafb;
+.platkey-interface-container:hover h2 {
+  opacity: 1;
+  transform: scale(1.05);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.platkey-interface-container:hover .platkey-interface {
+  transform: scale(1.05);
+  opacity: 0.6;
+}
+
+.platkey-logo {
+  box-shadow: 0 0 10rem 1rem #33B1FF;
+  -webkit-box-shadow: 0 0 10rem 1rem #33B1FF;
+  -moz-box-shadow: 0 0 10rem 1rem #33B1FF;
+  border-radius: 25px;
+}
+
+@keyframes lightup {
+  0% {
+    box-shadow: 0 0 10rem 1px #33B1FF;
+    -webkit-box-shadow: 0 0 10rem 1px #33B1FF;
+    -moz-box-shadow: 0 0 10rem 1px #33B1FF;
+  }  
+  50% {
+    box-shadow: 0 0 0rem 1px #33B1FF;
+    -webkit-box-shadow: 0 0 0rem 1px #33B1FF;
+    -moz-box-shadow: 0 0 0rem 1px #33B1FF;
+  }  
+  100% {
+    box-shadow: 0 0 10rem 1px #33B1FF;
+    -webkit-box-shadow: 0 0 10rem 1px #33B1FF;
+    -moz-box-shadow: 0 0 10rem 1px #33B1FF;
+  }  
 }
