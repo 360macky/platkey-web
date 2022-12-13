@@ -62,6 +62,7 @@ const PlatKeyUI = (props: PlatKeyUIProps) => {
 function App() {
   const { t } = useTranslation();
   const handleInstall = () => {
+    // TODO: Update isMac to isSafari browser.
     const isMac = window.navigator.userAgent.indexOf("Mac") !== -1;
     if (isMac) {
       window.open("https://www.apple.com/app-store/", "_blank");
@@ -94,7 +95,7 @@ function App() {
               </span>
             </h1>
             <h2 className="text-green text-4xl font-semibold lg:pt-3 text-center lg:text-left pt-4">
-              Platkey <span className="font-light hidden sm:inline">3.0</span>
+              PlatKey <span className="font-light hidden sm:inline">3.0</span>
             </h2>
           </div>
         </div>
@@ -146,7 +147,7 @@ function App() {
       </div>
       {/*  */}
       <div className="min-h-screen bg-darkblue px-4 flex justify-center">
-        <div className="flex flex-col gap-y-[16vh] py-[16vh] lg:pt-[0vh] lg:pb-[26vh]">
+        <div className="flex flex-col gap-y-[16vh] py-[16vh] lg:pt-[2vh] lg:pb-[26vh]">
           <PlatKeyUI message={t("hero.message.big")} />
           <div className={featureClassNames}>
             <h2 className="text-green font-semibold text-3xl lg:text-4xl text-center">
