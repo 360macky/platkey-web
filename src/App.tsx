@@ -68,7 +68,7 @@ function App() {
       window.open("https://www.apple.com/app-store/", "_blank");
     } else {
       window.open(
-        "https://chrome.google.com/webstore/detail/platzikey/bdjedpeffgjikndcihipemgdinpcmpcf?hl=es-419",
+        "https://chrome.google.com/webstore/detail/platkey/bdjedpeffgjikndcihipemgdinpcmpcf",
         "_blank"
       );
     }
