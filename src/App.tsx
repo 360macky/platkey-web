@@ -62,9 +62,9 @@ const PlatKeyUI = (props: PlatKeyUIProps) => {
 function App() {
   const { t } = useTranslation();
   const handleInstall = () => {
-    // TODO: Update isMac to isSafari browser.
-    const isMac = window.navigator.userAgent.indexOf("Mac") !== -1;
-    if (isMac) {
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+    if (isSafari) {
       window.open("https://www.apple.com/app-store/", "_blank");
     } else {
       window.open(
