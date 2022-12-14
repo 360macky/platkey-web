@@ -119,27 +119,22 @@ function App() {
           <div className="flex gap-x-8">
             <img
               src={chrome}
-              alt=""
+              alt="Google Chrome"
               className="w-12 transition hover:scale-110"
             />
             <img
               src={edge}
-              alt=""
+              alt="Microsoft Edge"
               className="w-12 transition hover:scale-110"
             />
             <img
               src={brave}
-              alt=""
+              alt="Brave"
               className="w-12 transition hover:scale-110"
             />
             <img
               src={safari}
-              alt=""
-              className="w-12 transition hover:scale-110"
-            />
-            <img
-              src={firefox}
-              alt=""
+              alt="Apple Safari"
               className="w-12 transition hover:scale-110"
             />
           </div>
