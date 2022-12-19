@@ -1,14 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import './i18n';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import Policy from './Policy';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import "./i18n";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import Policy from "./Policy";
+import Love from "./Love";
 
 const router = createBrowserRouter([
   {
@@ -19,10 +18,14 @@ const router = createBrowserRouter([
     path: "/policy",
     element: <Policy />,
   },
+  {
+    path: "/love",
+    element: <Love />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
