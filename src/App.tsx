@@ -9,7 +9,6 @@ import chrome from "./assets/chrome.png";
 import edge from "./assets/edge.png";
 import brave from "./assets/brave.png";
 import safari from "./assets/safari.png";
-import firefox from "./assets/firefox.png";
 import platkeyinterface from "./assets/interface.webp";
 
 const Key = ({ children }: any) => {
@@ -27,11 +26,11 @@ const Key = ({ children }: any) => {
 const extensionVariant = {
   visible: { opacity: 1, scale: 1 },
   hidden: { opacity: 0, scale: 0 },
-}
+};
 
 type PlatKeyUIProps = {
   message: string;
-}
+};
 
 const PlatKeyUI = (props: PlatKeyUIProps) => {
   const [interfaceRef, inView] = useInView();
@@ -50,29 +49,28 @@ const PlatKeyUI = (props: PlatKeyUIProps) => {
       initial="hidden"
       animate={control}
     >
-      <img src={platkeyinterface} alt="Interface of PlatKey" className="w-10/12 lg:w-[24rem] platkey-interface tracking-widest
-" />
+      <img
+        src={platkeyinterface}
+        alt="Interface of PlatKey"
+        className="w-10/12 lg:w-[24rem] platkey-interface tracking-widest
+"
+      />
       <div className="absolute flex flex-col justify-center items-center">
-        <h2 className="text-white font-bold	text-3xl lg:text-[7rem] drop-shadow-xl">{props.message}</h2>
+        <h3 className="text-white font-bold	text-3xl lg:text-[7rem] drop-shadow-xl">
+          {props.message}
+        </h3>
       </div>
     </motion.div>
-  )
-}
+  );
+};
+
+const APP_STORE_LINK = "https://apps.apple.com/app/platkey/id1659587636 ";
+const CHROME_STORE_LINK =
+  "https://chrome.google.com/webstore/detail/platkey/bdjedpeffgjikndcihipemgdinpcmpcf";
 
 function App() {
   const { t } = useTranslation();
-  const handleInstall = () => {
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-    if (isSafari) {
-      window.open("https://www.apple.com/app-store/", "_blank");
-    } else {
-      window.open(
-        "https://chrome.google.com/webstore/detail/platkey/bdjedpeffgjikndcihipemgdinpcmpcf",
-        "_blank"
-      );
-    }
-  };
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   const featureClassNames =
     "flex flex-col justify-center items-center min-h-auto";
 
@@ -94,21 +92,22 @@ function App() {
                 {t("hero.message.underline")}
               </span>
             </h1>
-            <h2 className="text-green text-4xl font-semibold lg:pt-3 text-center lg:text-left pt-4">
+            <h3 className="text-green text-4xl font-semibold lg:pt-3 text-center lg:text-left pt-4">
               PlatKey <span className="font-light hidden sm:inline">3.0</span>
-            </h2>
+            </h3>
           </div>
         </div>
         <div className="flex flex-col w-full px-4 gap-y-4 lg:flex-row-reverse lg:gap-x-4 lg:justify-center lg:pt-8">
           <a
-            href="/"
+            href={isSafari ? APP_STORE_LINK : CHROME_STORE_LINK}
+            target="_blank"
+            rel="noreferrer"
             className="bg-skyblue text-blue text-3xl text-center justify-center rounded-lg py-2 font-bold active:ring lg:px-12 flex"
-            onClick={handleInstall}
           >
-            Install
+            {t("hero.message.install")}
           </a>
           <a
-            href="/"
+            href="#getting-started"
             className="border border-skyblue bg-darkblue text-skyblue text-2xl text-center rounded-lg py-2 lg:px-8 active:ring"
           >
             {t("hero.message.howitworks")}
@@ -144,10 +143,18 @@ function App() {
       <div className="min-h-screen bg-darkblue px-4 flex justify-center">
         <div className="flex flex-col gap-y-[16vh] py-[16vh] lg:pt-[2vh] lg:pb-[26vh]">
           <PlatKeyUI message={t("hero.message.big")} />
-          <div className={featureClassNames}>
-            <h2 className="text-green font-semibold text-3xl lg:text-4xl text-center">
-              {t("feature.shortcuts.title")}
+          <div className="">
+            <h2
+              className="text-white font-bold text-4xl lg:text-6xl text-center lg:pt-24"
+              id="getting-started"
+            >
+              {t("hero.message.howitworks")}
             </h2>
+          </div>
+          <div className={featureClassNames}>
+            <h3 className="text-green font-semibold text-3xl lg:text-4xl text-center">
+              {t("feature.shortcuts.title")}
+            </h3>
             <div className="flex flex-col gap-y-5 py-10">
               <p className="text-white inline text-2xl text-center">
                 {t("feature.shortcuts.message")}
@@ -166,9 +173,9 @@ function App() {
             </div>
           </div>
           <div className={featureClassNames}>
-            <h2 className="text-green font-semibold text-3xl lg:text-4xl text-center">
+            <h3 className="text-green font-semibold text-3xl lg:text-4xl text-center">
               {t("feature.greenboard.title")}
-            </h2>
+            </h3>
             <div className="flex flex-col gap-y-5 py-10">
               <p className="text-white inline text-2xl text-center">
                 {t("feature.greenboard.message")}{" "}
@@ -180,9 +187,9 @@ function App() {
             </div>
           </div>
           <div className={featureClassNames}>
-            <h2 className="text-green font-semibold text-3xl lg:text-4xl text-center">
+            <h3 className="text-green font-semibold text-3xl lg:text-4xl text-center">
               {t("feature.spotlight.title")}
-            </h2>
+            </h3>
             <div className="flex flex-col gap-y-5 py-10">
               <p className="text-white inline text-2xl text-center">
                 {t("feature.spotlight.instruction.01")} <Key>Ctrl</Key>+
@@ -193,9 +200,9 @@ function App() {
             </div>
           </div>
           <div className={featureClassNames}>
-            <h2 className="text-green font-semibold text-3xl lg:text-4xl text-center">
+            <h3 className="text-green font-semibold text-3xl lg:text-4xl text-center">
               {t("feature.classes.title")}
-            </h2>
+            </h3>
             <div className="flex flex-col gap-y-5 py-10">
               <p className="text-white inline text-2xl text-center">
                 {t("feature.classes.instruction.01")} <Key>Ctrl</Key>+
@@ -213,9 +220,9 @@ function App() {
             </div>
           </div>
           <div className={featureClassNames}>
-            <h2 className="text-green font-semibold text-3xl lg:text-4xl text-center">
+            <h3 className="text-green font-semibold text-3xl lg:text-4xl text-center">
               {t("feature.mode.title")}
-            </h2>
+            </h3>
             <div className="flex flex-col gap-y-5 py-10">
               <p className="text-white inline text-2xl text-center">
                 {t("feature.mode.message")}
@@ -228,19 +235,19 @@ function App() {
         <div className="flex flex-row justify-center gap-x-[2rem]">
           <a
             className="text-green hover:underline"
-            href="https://github.com/360macky/platzikey"
+            href="https://github.com/360macky/platkey"
           >
             {t("footer.githubrepository")}
           </a>
           <a
             className="text-green hover:underline"
-            href="https://github.com/360macky/platzikey/issues"
+            href="https://github.com/360macky/platkey/issues"
           >
             {t("footer.issues")}
           </a>
           <a
             className="text-green hover:underline"
-            href="https://github.com/360macky/platzikey#-contributing"
+            href="https://github.com/360macky/platkey#-contributing"
           >
             {t("footer.contributions")}
           </a>
