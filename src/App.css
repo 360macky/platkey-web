@@ -9,7 +9,7 @@
   transition-timing-function: ease;
 }
 
-.platkey-interface-container h2 {
+.platkey-interface-container h3 {
   transition-property: opacity transform;
   transition-duration: 400ms;
   transition-timing-function: ease;
@@ -29,7 +29,7 @@
   opacity: 1;
 }
 
-.platkey-interface-container:hover h2 {
+.platkey-interface-container:hover h3 {
   opacity: 1;
   transform: scale(1.05);
 }
