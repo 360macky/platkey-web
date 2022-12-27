@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "./assets/platkey-logo.svg";
 import { useTranslation } from "react-i18next";
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
+import Lottie from "lottie-react-web";
+import classnames from "classnames";
 import "./App.css";
 
 import chrome from "./assets/chrome.png";
@@ -10,6 +12,9 @@ import edge from "./assets/edge.png";
 import brave from "./assets/brave.png";
 import safari from "./assets/safari.png";
 import platkeyinterface from "./assets/interface.webp";
+import platkeyssh from "./assets/ssh.webp";
+import searchAnimation from "./assets/search-animation.json";
+import greenboardAnimation from "./assets/greenboard-animation.json";
 
 const Key = ({ children }: any) => {
   return (
@@ -52,8 +57,7 @@ const PlatKeyUI = (props: PlatKeyUIProps) => {
       <img
         src={platkeyinterface}
         alt="Interface of PlatKey"
-        className="w-10/12 lg:w-[24rem] platkey-interface tracking-widest
-"
+        className="w-10/12 lg:w-[24rem] platkey-interface tracking-widest"
       />
       <div className="absolute flex flex-col justify-center items-center">
         <h3 className="text-white font-bold	text-3xl lg:text-[7rem] drop-shadow-xl">
@@ -73,6 +77,23 @@ function App() {
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   const featureClassNames =
     "flex flex-col justify-center items-center min-h-auto";
+
+  const [keyPressed, setKeyPressed] = useState<string>("");
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const key = event.key.toLowerCase();
+      // If key pressed from a to e and from 1 to 5 set key pressed state to that key:
+      if (key.match(/^[a-e1-5]$/)) {
+        setKeyPressed(key);
+      }
+      // OR symbol: |
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <div>
@@ -155,7 +176,7 @@ function App() {
             <h3 className="text-green font-semibold text-3xl lg:text-4xl text-center">
               {t("feature.shortcuts.title")}
             </h3>
-            <div className="flex flex-col gap-y-5 py-10">
+            <div className="flex flex-col gap-y-5 py-10 items-center">
               <p className="text-white inline text-2xl text-center">
                 {t("feature.shortcuts.message")}
               </p>
@@ -170,6 +191,78 @@ function App() {
                 {t("feature.shortcuts.instruction.05")} <Key>a</Key>,{" "}
                 <Key>b</Key>, <Key>c</Key>, <Key>d</Key>, <Key>e</Key>.
               </p>
+              <div className="flex flex-col gap-y-3 w-full text-xl">
+                <div className="rounded-lg flex text-white border border-[#637b9d]">
+                  <div
+                    className={classnames("rounded-l-lg p-3", {
+                      "bg-skyblue text-[#24385b]":
+                        keyPressed === "a" || keyPressed === "1",
+                      "bg-[#24385b]": keyPressed !== "a" && keyPressed !== "1",
+                    })}
+                  >
+                    <p>a</p>
+                  </div>
+                  <div className="p-2 pl-6 flex items-center">
+                    <p>Try press A, B or C right now</p>
+                  </div>
+                </div>
+                <div className="rounded-lg flex text-white border border-[#637b9d]">
+                  <div
+                    className={classnames("rounded-l-lg p-3", {
+                      "bg-skyblue text-[#24385b]":
+                        keyPressed === "b" || keyPressed === "2",
+                      "bg-[#24385b]": keyPressed !== "b" && keyPressed !== "2",
+                    })}
+                  >
+                    <p>b</p>
+                  </div>
+                  <div className="p-2 pl-6 flex items-center">
+                    <p>Intenta y presiona A, B o C ahora mismo</p>
+                  </div>
+                </div>
+                <div className="rounded-lg flex text-white border border-[#637b9d]">
+                  <div
+                    className={classnames("rounded-l-lg p-3", {
+                      "bg-skyblue text-[#24385b]":
+                        keyPressed === "c" || keyPressed === "3",
+                      "bg-[#24385b]": keyPressed !== "c" && keyPressed !== "3",
+                    })}
+                  >
+                    <p>c</p>
+                  </div>
+                  <div className="p-2 pl-6 flex items-center">
+                    <p>This is how the options look like</p>
+                  </div>
+                </div>
+                <div className="rounded-lg flex text-white border border-[#637b9d]">
+                  <div
+                    className={classnames("rounded-l-lg p-3", {
+                      "bg-skyblue text-[#24385b]":
+                        keyPressed === "d" || keyPressed === "4",
+                      "bg-[#24385b]": keyPressed !== "d" && keyPressed !== "4",
+                    })}
+                  >
+                    <p>d</p>
+                  </div>
+                  <div className="p-2 pl-6 flex items-center">
+                    <p>Así lucen las opciones</p>
+                  </div>
+                </div>
+                <div className="rounded-lg flex text-white border border-[#637b9d]">
+                  <div
+                    className={classnames("rounded-l-lg p-3", {
+                      "bg-skyblue text-[#24385b]":
+                        keyPressed === "e" || keyPressed === "5",
+                      "bg-[#24385b]": keyPressed !== "e" && keyPressed !== "5",
+                    })}
+                  >
+                    <p>e</p>
+                  </div>
+                  <div className="p-2 pl-6 flex items-center">
+                    <p>Is it awesome?</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div className={featureClassNames}>
@@ -184,6 +277,11 @@ function App() {
                 </span>
                 . {t("feature.greenboard.instruction.01")}
               </p>
+              <Lottie
+                options={{
+                  animationData: greenboardAnimation,
+                }}
+              />
             </div>
           </div>
           <div className={featureClassNames}>
@@ -191,6 +289,14 @@ function App() {
               {t("feature.spotlight.title")}
             </h3>
             <div className="flex flex-col gap-y-5 py-10">
+              <p className="text-white inline text-2xl text-center">
+                {t("feature.spotlight.message")}
+              </p>
+              <Lottie
+                options={{
+                  animationData: searchAnimation,
+                }}
+              />
               <p className="text-white inline text-2xl text-center">
                 {t("feature.spotlight.instruction.01")} <Key>Ctrl</Key>+
                 <Key>K</Key> {t("feature.spotlight.instruction.02")}{" "}
@@ -227,6 +333,11 @@ function App() {
               <p className="text-white inline text-2xl text-center">
                 {t("feature.mode.message")}
               </p>
+              <img
+                src={platkeyssh}
+                alt="Interface of PlatKey SSH mode"
+                className="rounded-lg lg:w-[60rem]"
+              />
             </div>
           </div>
         </div>
