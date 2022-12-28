@@ -13,6 +13,7 @@ import brave from "./assets/brave.png";
 import safari from "./assets/safari.png";
 import platkeyinterface from "./assets/interface.webp";
 import platkeyssh from "./assets/ssh.webp";
+import platkeysave from "./assets/save.webp";
 import searchAnimation from "./assets/search-animation.json";
 import greenboardAnimation from "./assets/greenboard-animation.json";
 
@@ -68,6 +69,42 @@ const PlatKeyUI = (props: PlatKeyUIProps) => {
   );
 };
 
+type PlatKeyOptionProps = {
+  letterKey: string;
+  numberKey: string;
+  keyPressed: string;
+  optionText: string;
+};
+
+const PlatKeyOption = ({
+  keyPressed,
+  optionText,
+  letterKey,
+  numberKey,
+}: PlatKeyOptionProps) => {
+  const shouldBeSelected = keyPressed === letterKey || keyPressed === numberKey;
+  return (
+    <div
+      className={classnames("rounded-lg flex text-white border", {
+        "border-skyblue": shouldBeSelected,
+        "border-[#637b9d]": !shouldBeSelected,
+      })}
+    >
+      <div
+        className={classnames("rounded-l-lg p-3", {
+          "bg-skyblue text-[#24385b]": shouldBeSelected,
+          "bg-[#24385b]": !shouldBeSelected,
+        })}
+      >
+        <p>{letterKey}</p>
+      </div>
+      <div className="p-2 pl-6 flex items-center">
+        <p>{optionText}</p>
+      </div>
+    </div>
+  );
+};
+
 const APP_STORE_LINK = "https://apps.apple.com/app/platkey/id1659587636 ";
 const CHROME_STORE_LINK =
   "https://chrome.google.com/webstore/detail/platkey/bdjedpeffgjikndcihipemgdinpcmpcf";
@@ -83,11 +120,9 @@ function App() {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       const key = event.key.toLowerCase();
-      // If key pressed from a to e and from 1 to 5 set key pressed state to that key:
       if (key.match(/^[a-e1-5]$/)) {
         setKeyPressed(key);
       }
-      // OR symbol: |
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => {
@@ -191,78 +226,38 @@ function App() {
                 {t("feature.shortcuts.instruction.05")} <Key>a</Key>,{" "}
                 <Key>b</Key>, <Key>c</Key>, <Key>d</Key>, <Key>e</Key>.
               </p>
-              <div className="flex flex-col gap-y-3 w-full text-xl">
-                <div className="rounded-lg flex text-white border border-[#637b9d]">
-                  <div
-                    className={classnames("rounded-l-lg p-3", {
-                      "bg-skyblue text-[#24385b]":
-                        keyPressed === "a" || keyPressed === "1",
-                      "bg-[#24385b]": keyPressed !== "a" && keyPressed !== "1",
-                    })}
-                  >
-                    <p>a</p>
-                  </div>
-                  <div className="p-2 pl-6 flex items-center">
-                    <p>Try press A, B or C right now</p>
-                  </div>
-                </div>
-                <div className="rounded-lg flex text-white border border-[#637b9d]">
-                  <div
-                    className={classnames("rounded-l-lg p-3", {
-                      "bg-skyblue text-[#24385b]":
-                        keyPressed === "b" || keyPressed === "2",
-                      "bg-[#24385b]": keyPressed !== "b" && keyPressed !== "2",
-                    })}
-                  >
-                    <p>b</p>
-                  </div>
-                  <div className="p-2 pl-6 flex items-center">
-                    <p>Intenta y presiona A, B o C ahora mismo</p>
-                  </div>
-                </div>
-                <div className="rounded-lg flex text-white border border-[#637b9d]">
-                  <div
-                    className={classnames("rounded-l-lg p-3", {
-                      "bg-skyblue text-[#24385b]":
-                        keyPressed === "c" || keyPressed === "3",
-                      "bg-[#24385b]": keyPressed !== "c" && keyPressed !== "3",
-                    })}
-                  >
-                    <p>c</p>
-                  </div>
-                  <div className="p-2 pl-6 flex items-center">
-                    <p>This is how the options look like</p>
-                  </div>
-                </div>
-                <div className="rounded-lg flex text-white border border-[#637b9d]">
-                  <div
-                    className={classnames("rounded-l-lg p-3", {
-                      "bg-skyblue text-[#24385b]":
-                        keyPressed === "d" || keyPressed === "4",
-                      "bg-[#24385b]": keyPressed !== "d" && keyPressed !== "4",
-                    })}
-                  >
-                    <p>d</p>
-                  </div>
-                  <div className="p-2 pl-6 flex items-center">
-                    <p>Así lucen las opciones</p>
-                  </div>
-                </div>
-                <div className="rounded-lg flex text-white border border-[#637b9d]">
-                  <div
-                    className={classnames("rounded-l-lg p-3", {
-                      "bg-skyblue text-[#24385b]":
-                        keyPressed === "e" || keyPressed === "5",
-                      "bg-[#24385b]": keyPressed !== "e" && keyPressed !== "5",
-                    })}
-                  >
-                    <p>e</p>
-                  </div>
-                  <div className="p-2 pl-6 flex items-center">
-                    <p>Is it awesome?</p>
-                  </div>
-                </div>
-              </div>
+            </div>
+            <div className="flex flex-col gap-y-3 w-full text-xl">
+              <PlatKeyOption
+                keyPressed={keyPressed}
+                optionText="Try press A, B, C right now!"
+                letterKey="a"
+                numberKey="1"
+              />
+              <PlatKeyOption
+                keyPressed={keyPressed}
+                optionText="Presiona A, B, o C ahora mismo"
+                letterKey="b"
+                numberKey="2"
+              />
+              <PlatKeyOption
+                keyPressed={keyPressed}
+                optionText="Así lucen las opciones en tu examen"
+                letterKey="c"
+                numberKey="3"
+              />
+              <PlatKeyOption
+                keyPressed={keyPressed}
+                optionText="This is how your options look like"
+                letterKey="d"
+                numberKey="4"
+              />
+              <PlatKeyOption
+                keyPressed={keyPressed}
+                optionText="Is it awesome?"
+                letterKey="e"
+                numberKey="5"
+              />
             </div>
           </div>
           <div className={featureClassNames}>
@@ -277,12 +272,27 @@ function App() {
                 </span>
                 . {t("feature.greenboard.instruction.01")}
               </p>
-              <Lottie
-                options={{
-                  animationData: greenboardAnimation,
-                }}
-              />
             </div>
+            <Lottie
+              options={{
+                animationData: greenboardAnimation,
+              }}
+            />
+          </div>
+          <div className={featureClassNames}>
+            <h3 className="text-green font-semibold text-3xl lg:text-4xl text-center">
+              {t("feature.save.title")}
+            </h3>
+            <div className="flex flex-col gap-y-5 py-10">
+              <p className="text-white inline text-2xl text-center">
+                {t("feature.save.message")}
+              </p>
+            </div>
+            <img
+              src={platkeysave}
+              alt={t("feature.save.title")}
+              className="rounded-lg lg:w-[60rem] hover:scale-105 transition duration-300"
+            />
           </div>
           <div className={featureClassNames}>
             <h3 className="text-green font-semibold text-3xl lg:text-4xl text-center">
@@ -312,7 +322,8 @@ function App() {
             <div className="flex flex-col gap-y-5 py-10">
               <p className="text-white inline text-2xl text-center">
                 {t("feature.classes.instruction.01")} <Key>Ctrl</Key>+
-                <Key>B</Key> o <Key>Cmd</Key>+<Key>B</Key>{" "}
+                <Key>B</Key> {t("feature.spotlight.instruction.02")}{" "}
+                <Key>Cmd</Key>+<Key>B</Key>{" "}
                 {t("feature.classes.instruction.03")}
               </p>
               <p className="text-white inline text-2xl text-center">
@@ -333,12 +344,12 @@ function App() {
               <p className="text-white inline text-2xl text-center">
                 {t("feature.mode.message")}
               </p>
-              <img
-                src={platkeyssh}
-                alt="Interface of PlatKey SSH mode"
-                className="rounded-lg lg:w-[60rem]"
-              />
             </div>
+            <img
+              src={platkeyssh}
+              alt={t("feature.mode.title")}
+              className="rounded-lg lg:w-[60rem] border"
+            />
           </div>
         </div>
       </div>
