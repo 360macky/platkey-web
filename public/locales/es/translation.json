@@ -27,6 +27,8 @@
     "feature.classes.instruction.03": "para abrir la lista de clases.",
     "feature.classes.instruction.04": "para retroceder una clase.",
     "feature.classes.instruction.05": "para avanzar una clase.",
+    "feature.save.title": "Guarda contribuciones en tu Student Home",
+    "feature.save.message": "No pierdas increíbles contribuciones de otros estudiantes como tú.",
     "feature.mode.title": "La experiencia de la línea de comandos en un examen.",
     "feature.mode.message": "Usa el Modo SSH para activar el diseño de línea de comandos.",
     "footer.githubrepository": "Repositorio GitHub",

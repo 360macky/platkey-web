@@ -27,10 +27,12 @@
     "feature.classes.instruction.03": "To open the class list.",
     "feature.classes.instruction.04": "To go back a class.",
     "feature.classes.instruction.05": "To advance a class.",
+    "feature.save.title": "Save contributions in your Student Home",
+    "feature.save.message": "Don't miss awesome contributions from your classmates!",
     "feature.mode.title": "The experience of the command line in an exam.",
     "feature.mode.message": "Use the SSH mode to activate command line design.",
     "footer.githubrepository": "Github repository",
     "footer.issues": "Issues",
     "footer.contributions": "Contributions",
-    "footer.disclaimer": "All trademarks, logos and brand names are the property of their respective owners. All company, product and service names used in this website are for identification purposes only. Use of these names,trademarks and brands does not imply endorsement."
+    "footer.disclaimer": "All trademarks, logos and brand names are the property of their respective owners. All company, product and service names used in this website are for identification purposes only. Use of these names, trademarks and brands does not imply endorsement."
 }
