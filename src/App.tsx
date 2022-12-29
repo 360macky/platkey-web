@@ -7,6 +7,8 @@ import Lottie from "lottie-react-web";
 import classnames from "classnames";
 import "./App.css";
 
+import Key from "./components/Key";
+
 import chrome from "./assets/chrome.png";
 import edge from "./assets/edge.png";
 import brave from "./assets/brave.png";
@@ -16,18 +18,6 @@ import platkeyssh from "./assets/ssh.webp";
 import platkeysave from "./assets/save.webp";
 import searchAnimation from "./assets/search-animation.json";
 import greenboardAnimation from "./assets/greenboard-animation.json";
-
-const Key = ({ children }: any) => {
-  return (
-    <>
-      &nbsp;
-      <div className="inline bg-blue border border-b-2 border-black py-1 px-2 rounded-md font-mono cursor-pointer">
-        {children}
-      </div>
-      &nbsp;
-    </>
-  );
-};
 
 const extensionVariant = {
   visible: { opacity: 1, scale: 1 },
@@ -259,6 +249,11 @@ function App() {
                 numberKey="5"
               />
             </div>
+            <div className="flex flex-col gap-y-5 py-10 items-center">
+              <p className="text-white inline text-2xl text-center">
+                {t("feature.shortcuts.instruction.06.01")} <Key>0</Key> {t("or")} <Key>x</Key> {t("feature.shortcuts.instruction.06.02")}
+              </p>
+            </div>
           </div>
           <div className={featureClassNames}>
             <h3 className="text-green font-semibold text-3xl lg:text-4xl text-center">
@@ -328,11 +323,25 @@ function App() {
               </p>
               <p className="text-white inline text-2xl text-center">
                 {t("feature.classes.instruction.01")} <Key>Shift</Key>
-                <Key>⬅</Key> {t("feature.classes.instruction.04")}
+                <Key>P</Key> {t("feature.classes.instruction.04")}
               </p>
               <p className="text-white inline text-2xl text-center">
                 {t("feature.classes.instruction.01")} <Key>Shift</Key>
-                <Key>➡️</Key> {t("feature.classes.instruction.05")}
+                <Key>N</Key> {t("feature.classes.instruction.05")}
+              </p>
+              <p className="text-white inline text-2xl text-center">
+                {t("feature.classes.instruction.01")} <Key>Shift</Key>
+                <Key>M</Key> {t("feature.classes.instruction.06")}
+              </p>
+              <p className="text-white inline text-2xl text-center">
+                {t("feature.classes.instruction.01")} <Key>Shift</Key>
+                <Key>A</Key> {t("feature.classes.instruction.07")}
+              </p>
+              <p className="text-white inline text-2xl text-center">
+                {t("feature.classes.instruction.01")} <Key>Ctrl</Key>+
+                <Key>Enter</Key> {t("feature.spotlight.instruction.02")}{" "}
+                <Key>Cmd</Key>+<Key>Enter</Key>{" "}
+                {t("feature.classes.instruction.08")}
               </p>
             </div>
           </div>
